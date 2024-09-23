@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ParticipantsList from "../../components/ParticipantsList/ParticipantsList";
 
 const ParticipantsPage = () => {
@@ -20,6 +20,9 @@ const ParticipantsPage = () => {
 
   return (
     <div>
+      <Link to="/">
+        <button>Go back</button>
+      </Link>
       <h2>Awesome Event Participants</h2>
       {users.length > 0 ? (
         <ParticipantsList users={users} />

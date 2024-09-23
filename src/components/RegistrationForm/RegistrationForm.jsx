@@ -1,5 +1,6 @@
+import { Navigate } from "react-router-dom";
+
 const RegistrationForm = ({ formData, setFormData }) => {
-  // Функция для обработки изменения полей формы
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -9,7 +10,7 @@ const RegistrationForm = ({ formData, setFormData }) => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Предотвращаем перезагрузку страницы
+    e.preventDefault();
 
     try {
       const response = await fetch(
@@ -19,17 +20,16 @@ const RegistrationForm = ({ formData, setFormData }) => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(formData), // Отправляем данные формы на бэкенд
+          body: JSON.stringify(formData),
         }
       );
 
       if (response.ok) {
         const result = await response.json();
         console.log("Успешная регистрация:", result);
-        // Тут можно обработать успешную регистрацию (например, показать сообщение)
+        Navigate("/");
       } else {
         console.error("Ошибка регистрации:", response.statusText);
-        // Тут можно обработать ошибку (например, показать сообщение об ошибке)
       }
     } catch (error) {
       console.error("Ошибка сети:", error);
@@ -73,6 +73,32 @@ const RegistrationForm = ({ formData, setFormData }) => {
             required
           />
         </label>
+      </div>
+      <div>
+        <label>Where did you hear about this event?</label>
+        <div>
+          <input
+            type="radio"
+            name="referral"
+            value="social_media"
+            onChange={handleChange}
+          />{" "}
+          Social media
+          <input
+            type="radio"
+            name="referral"
+            value="friends"
+            onChange={handleChange}
+          />{" "}
+          Friends
+          <input
+            type="radio"
+            name="referral"
+            value="found_myself"
+            onChange={handleChange}
+          />{" "}
+          Found myself
+        </div>
       </div>
       <button type="submit">Register</button>
     </form>
