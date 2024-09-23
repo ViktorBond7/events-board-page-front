@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import BoardList from "../../components/BoardList/BoardList";
 import { fetchBoard } from "../../components/api";
-import Loader from "../../components/Loader/loader";
+import Loader from "../../components/Loader/Loader";
 
 const BoarderListPage = () => {
   const [events, setEvents] = useState([]);
