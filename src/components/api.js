@@ -40,7 +40,6 @@ export const registration = async (formData) => {
 
     if (response.status === 201) {
       toast.success("Registration successful!");
-      Navigate("/");
     } else {
       console.error("Registration error:", response.statusText);
     }
