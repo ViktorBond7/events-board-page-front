@@ -1,17 +1,9 @@
 import axios from "axios";
 import toast from "react-hot-toast";
-import { Navigate } from "react-router-dom";
 
-export const fetchBoard = async (setEvents) => {
-  try {
-    const getBoard = await axios(
-      "https://events-board-page.onrender.com/bords"
-    );
-
-    setEvents(getBoard.data.data);
-  } catch (error) {
-    console.error("Error fetching events:", error);
-  }
+export const fetchBoard = async () => {
+  const getBoard = await axios("https://events-board-page.onrender.com/bords");
+  return getBoard.data.data;
 };
 
 export const fetchRegisteredUser = async (setUsers, eventId) => {
