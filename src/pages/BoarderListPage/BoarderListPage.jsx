@@ -1,16 +1,12 @@
 import { useEffect, useState } from "react";
 import BoardList from "../../components/BoardList/BoardList";
+import { fetchBoard } from "../../components/api";
 
 const BoarderListPage = () => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    fetch("https://events-board-page.onrender.com/bords")
-      .then((response) => response.json())
-      .then((data) => {
-        setEvents(data.data);
-      })
-      .catch((error) => console.log(error));
+    fetchBoard(setEvents);
   }, []);
 
   return (

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import RegistrationForm from "../../components/RegistrationForm/RegistrationForm";
 import { Link, useParams } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 const RegisterPage = () => {
   const { eventId } = useParams();
@@ -12,13 +13,12 @@ const RegisterPage = () => {
     eventId: eventId,
   });
 
-  console.log("Form data in RegisterPage:", formData);
-
   return (
     <div>
       <Link to="/">Home</Link>
 
       <RegistrationForm formData={formData} setFormData={setFormData} />
+      <Toaster />
     </div>
   );
 };

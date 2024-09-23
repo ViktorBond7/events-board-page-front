@@ -1,5 +1,5 @@
-import { Navigate } from "react-router-dom";
-
+import { registration } from "../api";
+import css from "./RegistrationForm.module.css";
 const RegistrationForm = ({ formData, setFormData }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -11,36 +11,14 @@ const RegistrationForm = ({ formData, setFormData }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    try {
-      const response = await fetch(
-        "https://events-board-page.onrender.com/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
-
-      if (response.ok) {
-        const result = await response.json();
-        console.log("Успешная регистрация:", result);
-        Navigate("/");
-      } else {
-        console.error("Ошибка регистрации:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Ошибка сети:", error);
-    }
+    registration(formData);
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label>
-          Full Name:
+      <div className={css.contRoot}>
+        <label className={css.contName}>
+          Full Name
           <input
             type="text"
             name="fullName"
@@ -51,8 +29,8 @@ const RegistrationForm = ({ formData, setFormData }) => {
         </label>
       </div>
       <div>
-        <label>
-          Email:
+        <label className={css.contEmail}>
+          Email
           <input
             type="email"
             name="email"
@@ -63,8 +41,8 @@ const RegistrationForm = ({ formData, setFormData }) => {
         </label>
       </div>
       <div>
-        <label>
-          Date of Birth:
+        <label className={css.contDate}>
+          Date of Birth
           <input
             type="date"
             name="dateOfBirth"
@@ -100,7 +78,9 @@ const RegistrationForm = ({ formData, setFormData }) => {
           Found myself
         </div>
       </div>
-      <button type="submit">Register</button>
+      <button className={css.button} type="submit">
+        Register
+      </button>
     </form>
   );
 };

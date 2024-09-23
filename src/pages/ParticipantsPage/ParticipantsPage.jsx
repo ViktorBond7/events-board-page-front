@@ -1,21 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import ParticipantsList from "../../components/ParticipantsList/ParticipantsList";
+import { fetchRegisteredUser } from "../../components/api";
 
 const ParticipantsPage = () => {
   const [users, setUsers] = useState([]);
   const { eventId } = useParams();
+
   useEffect(() => {
-    fetch(`https://events-board-page.onrender.com/events/${eventId}/users`)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data && data.data) {
-          setUsers(data.data);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching users for event:", error);
-      });
+    fetchRegisteredUser(setUsers, eventId);
   }, [eventId]);
 
   return (

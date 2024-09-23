@@ -11,7 +11,6 @@ function App() {
         <Route path="/" element={<BoarderListPage />} />
         <Route path="/register/:eventId" element={<RegisterPage />} />
         <Route path="/events/:eventId/users" element={<ParticipantsPage />} />
-        {/* <Route path="/events/:eventId/users" element={<ParticipantsPage />} /> */}
         <Route path="*" element={<BoarderListPage />} />
       </Routes>
     </div>
